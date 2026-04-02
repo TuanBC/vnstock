@@ -28,7 +28,6 @@ from vnstock.core.utils.validation import validate_symbol
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.user_agent import get_headers
 from vnstock.core.utils.transform import replace_in_column_names, flatten_hierarchical_index
-from vnai import optimize_execution
 
 logger = get_logger(__name__)
 
@@ -268,7 +267,6 @@ class Finance:
             logger.error(f"Error processing financial report data: {e}")
             raise
 
-    @optimize_execution("VCI")
     def _ratio_mapping(self, ratio_df: pd.DataFrame, lang: Optional[str] = 'en', mode: str = 'final', show_log: Optional[bool] = False):
         """
         A dedicated method to map the financial ratio DataFrame to different reports based on the company type code.
@@ -437,7 +435,6 @@ class Finance:
             logger.error(f"Error processing report '{report_key}': {e}")
             raise
 
-    @optimize_execution("VCI")
     def balance_sheet(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                     dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -463,7 +460,6 @@ class Finance:
             raise
 
 
-    @optimize_execution("VCI")
     def income_statement(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                         dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -480,7 +476,6 @@ class Finance:
         """
         return self._process_report('Chỉ tiêu kết quả kinh doanh', period=period, lang=lang, dropna=dropna, show_log=show_log)
 
-    @optimize_execution("VCI")
     def cash_flow(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                  dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -498,7 +493,6 @@ class Finance:
         return self._process_report('Chỉ tiêu lưu chuyển tiền tệ', period=period, lang=lang, dropna=dropna, show_log=show_log)
 
 
-    @optimize_execution("VCI")
     def ratio(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
             dropna: Optional[bool] = True, show_log: Optional[bool] = False,
             flatten_columns: Optional[bool] = False, separator: Optional[str] = "_",

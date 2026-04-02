@@ -1,5 +1,3 @@
-import vnai
-
 # Lazy import Vnstock to avoid circular import deadlock
 _Vnstock = None
 
@@ -82,20 +80,6 @@ __all__ = [
     "change_api_key",
     "check_status",
 ]
-
-# Delay vnai.setup() to avoid circular import deadlock
-_vnai_initialized = False
-
-def _ensure_vnai_initialized():
-    """Ensure vnai is initialized (called on first use)."""
-    global _vnai_initialized
-    if _vnai_initialized:
-        return
-    try:
-        vnai.setup()
-        _vnai_initialized = True
-    except Exception:
-        _vnai_initialized = True  # Mark as initialized to avoid retry loops
 
 # Lazy check for dependency compatibility (non-blocking, compact output)
 try:

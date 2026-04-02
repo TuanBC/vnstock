@@ -13,7 +13,6 @@ from vnstock.core.utils.user_agent import get_headers
 from vnstock.core.utils.transform import clean_html_dict, flatten_dict_to_df, flatten_list_to_df, reorder_cols, drop_cols_by_pattern
 from vnstock.core.utils.parser import get_asset_type, camel_to_snake
 from vnstock.core.utils.validation import validate_symbol
-from vnai import optimize_execution  # Import the decorator from vnai package
 from .const import _GRAPHQL_URL, _PRICE_INFO_MAP
 import copy
 
@@ -144,7 +143,6 @@ class Company:
         
         return price_data, ratio_data
     
-    @optimize_execution("VCI")
     def overview(self) -> pd.DataFrame:
         """
         Truy xuất thông tin tổng quan của công ty.
@@ -173,7 +171,6 @@ class Company:
         
         return df
 
-    @optimize_execution("VCI")
     def shareholders(self) -> pd.DataFrame:
         """
         Truy xuất thông tin cổ đông của công ty.
@@ -197,7 +194,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def officers(self, filter_by: str = 'working') -> pd.DataFrame:
         """
         Truy xuất thông tin lãnh đạo công ty.
@@ -244,7 +240,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def subsidiaries(self, filter_by: str = 'all') -> pd.DataFrame:
         """
         Truy xuất thông tin công ty con của công ty.
@@ -283,7 +278,6 @@ class Company:
             combine_df = pd.concat([df, affiliate_df])
             return combine_df
         
-    @optimize_execution("VCI")
     def affiliate(self) -> pd.DataFrame:
         """
         Truy xuất thông tin công ty liên kết của công ty.
@@ -309,7 +303,6 @@ class Company:
         
         return df
       
-    @optimize_execution("VCI")
     def news(self) -> pd.DataFrame:
         """
         Truy xuất tin tức liên quan đến công ty.
@@ -329,7 +322,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def events(self) -> pd.DataFrame:
         """
         Truy xuất các sự kiện của công ty.
@@ -355,7 +347,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def reports(self) -> pd.DataFrame:
         """
         Truy xuất báo cáo phân tích về công ty.
@@ -375,7 +366,6 @@ class Company:
         
         return df
 
-    @optimize_execution("VCI")
     def trading_stats(self) -> pd.DataFrame:
         """
         Truy xuất thống kê giao dịch của công ty.
@@ -405,7 +395,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def ratio_summary(self) -> pd.DataFrame:
         """
         Truy xuất tóm tắt các tỷ lệ tài chính của công ty.

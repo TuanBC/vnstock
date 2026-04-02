@@ -44,15 +44,11 @@ class Config:
 # Format: "X.Y.Z": {"package_name": "min_version", ...}
 VERSION_REQUIREMENTS = {
     "3.4.0": {
-        "vnai": ">=2.3.0",
-        "vnii": ">=0.1.5",
-        
         # # Core dependencies - required for vnstock to work
         # "requests": ">=2.25.0,<3.0.0",
         # "pandas": ">=1.3.0,<3.0.0",
         # "beautifulsoup4": ">=4.9.0,<5.0.0",
         # "packaging": ">=20.0",
-        
         # # Recommended optional dependencies
         # "openpyxl": ">=3.0.0",
         # "psutil": ">=5.8.0"

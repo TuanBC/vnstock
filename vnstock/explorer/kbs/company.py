@@ -4,7 +4,6 @@ import json
 import pandas as pd
 from typing import Dict, Optional, List
 import re
-from vnai import agg_execution
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.parser import get_asset_type, camel_to_snake
 from vnstock.core.utils.transform import clean_html_dict
@@ -350,7 +349,6 @@ class Company:
         
         return df
 
-    @agg_execution("KBS")
     def overview(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin tổng quan của công ty.
@@ -380,7 +378,6 @@ class Company:
 
         return df
 
-    @agg_execution("KBS")
     def officers(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin lãnh đạo công ty (officers).
@@ -409,7 +406,6 @@ class Company:
 
         return df
     
-    @agg_execution("KBS")
     def shareholders(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin cổ đông của công ty.
@@ -438,7 +434,6 @@ class Company:
 
         return df
     
-    @agg_execution("KBS")
     def ownership(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất cơ cấu cổ đông của công ty.
@@ -467,7 +462,6 @@ class Company:
 
         return df
     
-    @agg_execution("KBS")
     def subsidiaries(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin công ty con và công ty liên kết của công ty.
@@ -505,7 +499,6 @@ class Company:
 
         return df
     
-    @agg_execution("KBS")
     def affiliate(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin công ty liên kết của công ty (ownership ≤ 50%).
@@ -538,7 +531,6 @@ class Company:
         
         return df_affiliate
     
-    @agg_execution("KBS")
     def capital_history(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất lịch sử vốn điều lệ của công ty.
@@ -567,7 +559,6 @@ class Company:
 
         return df
     
-    @agg_execution("KBS")
     def events(
         self,
         event_type: Optional[int] = None,
@@ -640,7 +631,6 @@ class Company:
 
         return df
 
-    @agg_execution("KBS")
     def news(
         self,
         page: int = 1,
@@ -699,7 +689,6 @@ class Company:
 
         return df
 
-    @agg_execution("KBS")
     def insider_trading(
         self,
         page: int = 1,

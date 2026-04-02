@@ -4,7 +4,6 @@ import json
 import pandas as pd
 from typing import Optional, List, Dict, Tuple, Union
 from enum import Enum
-from vnai import agg_execution
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.parser import get_asset_type, normalize_english_text_to_snake_case
 from vnstock.core.utils.field import FieldHandler
@@ -381,7 +380,6 @@ class Finance:
                 logger.error(f"API Request Failed: {str(e)}")
             raise
 
-    @agg_execution("KBS")
     def income_statement(
         self,
         period: str = 'year',
@@ -456,7 +454,6 @@ class Finance:
 
         return df
 
-    @agg_execution("KBS")
     def balance_sheet(
         self,
         period: str = 'year',
@@ -530,7 +527,6 @@ class Finance:
 
         return df
 
-    @agg_execution("KBS")
     def cash_flow(
         self,
         period: str = 'year',
@@ -617,7 +613,6 @@ class Finance:
 
         return df
 
-    @agg_execution("KBS")
     def ratio(
         self,
         period: str = 'year',
