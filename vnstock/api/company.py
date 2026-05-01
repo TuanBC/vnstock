@@ -2,7 +2,6 @@
 
 from typing import Any
 from tenacity import retry, stop_after_attempt, wait_exponential
-from vnai import optimize_execution
 from vnstock.config import Config
 from vnstock.base import BaseAdapter, dynamic_method
 
@@ -59,7 +58,6 @@ class Company(BaseAdapter):
         )
 
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -73,12 +71,10 @@ class Company(BaseAdapter):
         """Retrieve company overview data."""
         pass
 
-    @optimize_execution("API")
     def info(self, *args: Any, **kwargs: Any) -> Any:
         """Alias for overview() to match vnstock_data parity."""
         return self.overview(*args, **kwargs)
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -92,7 +88,6 @@ class Company(BaseAdapter):
         """Retrieve company shareholders data."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -109,7 +104,6 @@ class Company(BaseAdapter):
         """
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -126,7 +120,6 @@ class Company(BaseAdapter):
         """
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -140,7 +133,6 @@ class Company(BaseAdapter):
         """Retrieve company affiliate data."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -154,7 +146,6 @@ class Company(BaseAdapter):
         """Retrieve company news."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -168,7 +159,6 @@ class Company(BaseAdapter):
         """Retrieve company events."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -182,7 +172,6 @@ class Company(BaseAdapter):
         """Retrieve company ownership structure."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -196,7 +185,6 @@ class Company(BaseAdapter):
         """Retrieve company capital change history."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(

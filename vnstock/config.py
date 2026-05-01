@@ -44,7 +44,6 @@ class Config:
 # Format: "X.Y.Z": {"package_name": "min_version", ...}
 VERSION_REQUIREMENTS = {
     "3.4.0": {
-        "vnai": ">=2.3.0",
         "vnii": ">=0.1.5",
         
         # # Core dependencies - required for vnstock to work

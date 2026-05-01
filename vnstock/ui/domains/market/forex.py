@@ -1,10 +1,8 @@
 from typing import Any
-from vnai import optimize_execution
 from vnstock.ui._base import BaseDetailUI
 
 class ForexMarket(BaseDetailUI):
     """Forex market data."""
-    @optimize_execution("UI")
     def ohlcv(self, start: str = None, end: str = None, resolution: str = '1D', count: int = 100, source: str = 'msn', **kwargs) -> Any:
         """Historical OHLCV bars for forex pairs."""
         # Handle parameter aliases

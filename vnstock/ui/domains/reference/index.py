@@ -1,5 +1,4 @@
 from typing import Any
-from vnai import optimize_execution
 from vnstock.ui._base import BaseUI
 
 class IndexReference(BaseUI):
@@ -25,17 +24,14 @@ class IndexReference(BaseUI):
         }
         return mapping.get(symbol.upper(), symbol.upper())
 
-    @optimize_execution("UI")
     def list(self, source: str = None) -> Any:
         """List all market indices."""
         return self._dispatch('Reference', 'index', 'list', source=source)
 
-    @optimize_execution("UI")
     def groups(self, source: str = None) -> Any:
         """List supported index groups (e.g., HOSE Indices, Sector Indices)."""
         return self._dispatch('Reference', 'index', 'groups', source=source)
 
-    @optimize_execution("UI")
     def members(self, symbol: str = None, source: str = None) -> Any:
         """List constituents/members of an index (e.g., VN30, HOSE, HNX)."""
         target = self._normalize_symbol(symbol or self.symbol)

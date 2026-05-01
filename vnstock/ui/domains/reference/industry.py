@@ -1,5 +1,4 @@
 from typing import Any
-from vnai import optimize_execution
 from vnstock.ui._base import BaseUI
 
 class IndustryReference(BaseUI):
@@ -13,7 +12,6 @@ class IndustryReference(BaseUI):
         self.symbol = symbol
         return self
 
-    @optimize_execution("UI")
     def list(self, source: str = None) -> Any:
         """Get industry classification (ICB)."""
         from vnstock.core.utils.env import is_colab
@@ -25,7 +23,6 @@ class IndustryReference(BaseUI):
         return self._dispatch('Reference', 'industry', 'list', source=source)
 
 
-    @optimize_execution("UI")
     def sectors(self, source: str = 'kbs') -> Any:
         """List symbols grouped by industry sectors."""
         return self._dispatch('Reference', 'industry', 'sectors', source=source)

@@ -2,7 +2,6 @@
 
 from typing import Any
 from tenacity import retry, stop_after_attempt, wait_exponential
-from vnai import optimize_execution
 from vnstock.config import Config
 from vnstock.base import BaseAdapter, dynamic_method
 
@@ -55,7 +54,6 @@ class Listing(BaseAdapter):
             show_log=show_log
         )
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -69,7 +67,6 @@ class Listing(BaseAdapter):
         """Retrieve all symbols (filtered to STOCK)."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -83,7 +80,6 @@ class Listing(BaseAdapter):
         """Retrieve symbols grouped by ICB industries."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -97,7 +93,6 @@ class Listing(BaseAdapter):
         """Retrieve symbols by exchange/board."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -111,7 +106,6 @@ class Listing(BaseAdapter):
         """Retrieve ICB code hierarchy and mapping."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -125,7 +119,6 @@ class Listing(BaseAdapter):
         """Retrieve symbols by predefined group (VN30, HNX30, CW, etc.)."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -139,13 +132,11 @@ class Listing(BaseAdapter):
         """Retrieve all supported index groups."""
         pass
 
-    @optimize_execution("API")
     @dynamic_method
     def all_etf(self, *args: Any, **kwargs: Any) -> Any:
         """Retrieve all Exchange-Traded Funds (ETFs)."""
         pass
 
-    @optimize_execution("API")
     @dynamic_method
     def search_symbol(self, *args: Any, **kwargs: Any) -> Any:
 
@@ -164,13 +155,11 @@ class Listing(BaseAdapter):
     #     )
     # )
 
-    @optimize_execution("API")
     @dynamic_method
     def events_calendar(self, *args: Any, **kwargs: Any) -> Any:
         """Retrieve events calendar (dividends, AGM, etc.)."""
         pass
 
-    @optimize_execution("API")
     @dynamic_method
     def info(self, *args: Any, **kwargs: Any) -> Any:
         """Retrieve detailed symbol/asset information."""
@@ -179,7 +168,6 @@ class Listing(BaseAdapter):
 
 
     # shortcuts that delegate to symbols_by_group
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -192,7 +180,6 @@ class Listing(BaseAdapter):
         """Retrieve all futures indices (group='FU_INDEX')."""
         return self.symbols_by_group(group="FU_INDEX", **kwargs)
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -205,7 +192,6 @@ class Listing(BaseAdapter):
         """Retrieve all government bonds (group='FU_BOND')."""
         return self.symbols_by_group(group="FU_BOND", **kwargs)
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -218,7 +204,6 @@ class Listing(BaseAdapter):
         """Retrieve all covered warrants (group='CW')."""
         return self.symbols_by_group(group="CW", **kwargs)
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(

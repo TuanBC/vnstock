@@ -67,13 +67,13 @@ def _check_dependency_compatibility():
     """
     Check if installed dependencies meet the requirements for current vnstock version.
     Returns a tuple: (has_issues, critical_issues, warnings)
-    Priority packages (vnai, vnii) are checked and displayed first.
+    Priority packages (vnii) are checked and displayed first.
     """
     from packaging.specifiers import SpecifierSet
     
     critical_issues = []
     warnings_list = []
-    priority_packages = ["vnai", "vnii"]  # Always check and display first
+    priority_packages = ["vnii"]  # Always check and display first
     
     try:
         vnstock_version = _get_installed_version_robust("vnstock")
@@ -217,7 +217,7 @@ def _check_version_updates():
     Compares installed vs latest version - only show if update available.
     Uses current Python executable for upgrade suggestions.
     """
-    core_packages = ["vnstock", "vnai"]
+    core_packages = ["vnstock"]
     license_packages = ["vnii", "vnstock_installer"]
     environment = detect_environment()
     

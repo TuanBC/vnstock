@@ -11,7 +11,6 @@ from vnstock.core.utils.transform import clean_html_dict, flatten_dict_to_df, fl
 from vnstock.core.utils.client import send_request
 from vnstock.core.utils.user_agent import get_headers
 from vnstock.core.utils.parser import get_asset_type, camel_to_snake
-from vnai import optimize_execution  # Import the decorator from vnai package
 from vnstock.explorer.vci.const import _VCIQ_URL, _VCI_COMPANY_URL
 
 logger = get_logger(__name__)
@@ -214,7 +213,6 @@ class Company:
         return response_data.get('data', {})
 
 
-    @optimize_execution("VCI")
     def _info(self) -> pd.DataFrame:
         """
         Truy xuất thông tin công ty theo chuẩn schema mapping.
@@ -278,7 +276,6 @@ class Company:
 
         return result_df
 
-    @optimize_execution("VCI")
     def overview(self) -> pd.DataFrame:
         """
         Truy xuất thông tin tổng quan của công ty (raw data từ API).
@@ -337,7 +334,6 @@ class Company:
         
         return df
 
-    @optimize_execution("VCI")
     def shareholders(self, mode: str = 'detailed') -> pd.DataFrame:
         """
         Truy xuất thông tin cổ đông của công ty.
@@ -417,7 +413,6 @@ class Company:
         else:
             raise ValueError(f"Invalid mode: {mode}. Use 'summary' or 'detailed'")
     
-    @optimize_execution("VCI")
     def officers(self, filter_by: str = 'working') -> pd.DataFrame:
         """
         Truy xuất thông tin lãnh đạo công ty (cá nhân có vị trí).
@@ -480,7 +475,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def subsidiaries(self, filter_by: str = 'all') -> pd.DataFrame:
         """
         Truy xuất thông tin công ty con của công ty.
@@ -570,7 +564,6 @@ class Company:
         else:
             return pd.DataFrame()
         
-    @optimize_execution("VCI")
     def affiliate(self) -> pd.DataFrame:
         """
         Truy xuất thông tin công ty liên kết của công ty.
@@ -608,7 +601,6 @@ class Company:
         
         return df
       
-    @optimize_execution("VCI")
     def news(self) -> pd.DataFrame:
         """
         Truy xuất tin tức liên quan đến công ty.
@@ -680,7 +672,6 @@ class Company:
             return data.get('content', [])
         return []
 
-    @optimize_execution("VCI")
     def events(self) -> pd.DataFrame:
         """
         Truy xuất các sự kiện của công ty.
@@ -720,7 +711,6 @@ class Company:
     
 
 
-    @optimize_execution("VCI")
     def trading_stats(self) -> pd.DataFrame:
         """
         Truy xuất thống kê giao dịch của công ty.
@@ -749,7 +739,6 @@ class Company:
         
         return df
     
-    @optimize_execution("VCI")
     def ratio_summary(self) -> pd.DataFrame:
         """
         Truy xuất tóm tắt các tỷ lệ tài chính của công ty.

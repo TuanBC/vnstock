@@ -13,7 +13,6 @@ from vnstock.core.utils.user_agent import get_headers
 from vnstock.core.utils.client import send_request, ProxyConfig
 from vnstock.core.utils.transform import drop_cols_by_pattern, reorder_cols
 from vnstock.common import indices as market_indices
-from vnai import optimize_execution
 logger = get_logger(__name__)
 
 class Listing:
@@ -48,7 +47,6 @@ class Listing:
         if not show_log:
             logger.setLevel('CRITICAL')
 
-    @optimize_execution("VCI")
     def all_symbols(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """Truy xuất danh sách toàn bộ mã và tên các cổ phiếu trên thị trường Việt Nam.
 
@@ -61,7 +59,6 @@ class Listing:
 
         return df
         
-    @optimize_execution("VCI")
     def symbols_by_industries(self, lang: str = 'vi', show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin phân ngành icb của các mã cổ phiếu trên thị trường Việt Nam.
@@ -124,7 +121,6 @@ class Listing:
 
         return df
 
-    @optimize_execution("VCI")
     def symbols_by_exchange(self, lang: str = 'vi', show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin niêm yết theo sàn của các mã cổ phiếu trên thị trường Việt Nam.
@@ -136,7 +132,7 @@ class Listing:
         if lang not in ['vi', 'en']:
             raise ValueError("Tham số lang phải là 'vi' hoặc 'en'.")
 
-        url = self.base_url + '/price/symbols/getAll'
+        url = self.base_url + 'price/symbols/getAll'
         
         # Use the send_request utility from api_client
         json_data = send_request(
@@ -175,7 +171,6 @@ class Listing:
         df.source = "VCI"
         return df
 
-    @optimize_execution("VCI")
     def industries_icb(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
         Truy xuất thông tin phân ngành icb của các mã cổ phiếu trên thị trường Việt Nam.
@@ -221,7 +216,6 @@ class Listing:
 
         return df
 
-    @optimize_execution("VCI")
     def symbols_by_group(self, group: str = 'VN30', show_log: Optional[bool] = False) -> pd.Series:
         """
         Truy xuất danh sách các mã cổ phiếu theo tên nhóm trên thị trường Việt Nam.
@@ -233,7 +227,7 @@ class Listing:
         if group not in _GROUP_CODE:
             raise ValueError(f"Invalid group. Group must be in {_GROUP_CODE}")
         
-        url = self.base_url + f'/price/symbols/getByGroup?group={group}'
+        url = self.base_url + f'price/symbols/getByGroup?group={group}'
 
         # Use the send_request utility from api_client
         json_data = send_request(
@@ -258,23 +252,18 @@ class Listing:
         df.source = "VCI"
         return df['symbol']
 
-    @optimize_execution("VCI")
     def all_future_indices(self, show_log: Optional[bool] = False) -> pd.Series:
         return self.symbols_by_group(group='FU_INDEX', show_log=show_log)
 
-    @optimize_execution("VCI")
     def all_government_bonds(self, show_log: Optional[bool] = False) -> pd.Series:
         return self.symbols_by_group(group='FU_BOND', show_log=show_log)
 
-    @optimize_execution("VCI")
     def all_covered_warrant(self, show_log: Optional[bool] = False) -> pd.Series:
         return self.symbols_by_group(group='CW', show_log=show_log)
 
-    @optimize_execution("VCI")
     def all_bonds(self, show_log: Optional[bool] = False) -> pd.Series:
         return self.symbols_by_group(group='BOND', show_log=show_log)
 
-    @optimize_execution("VCI")
     def market_status(self, show_log: Optional[bool] = False) -> pd.DataFrame:
         """Retrieve global market status from HOSE as reference."""
         from vnstock.core.utils.market import trading_hours
@@ -283,7 +272,6 @@ class Listing:
         df.source = "VCI"
         return df
 
-    @optimize_execution("VCI")
     def search_symbol(self, query: str, show_log: Optional[bool] = False) -> pd.DataFrame:
         """Search for symbols by filtering all_symbols list."""
         df = self.all_symbols(show_log=show_log)

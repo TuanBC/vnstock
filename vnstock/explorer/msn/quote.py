@@ -6,7 +6,6 @@ import pandas as pd
 import requests
 from datetime import datetime
 from typing import Optional, Dict
-from vnai import optimize_execution
 from vnstock.core.types import TimeFrame
 from vnstock.core.utils.interval import normalize_interval
 from vnstock.core.utils.logger import get_logger
@@ -66,7 +65,6 @@ class Quote:
             interval=timeframe_value
         )
         return ticker
-    @optimize_execution('MSN')
     def history(self, start: Optional[str] = None, end: Optional[str] = None, interval: Optional[str] = "1D", show_log: bool = False, count_back: Optional[int] = 365, asset_type: Optional[str] = None, timezone: str = 'Asia/Ho_Chi_Minh', **kwargs) -> pd.DataFrame:
         """
         Truy xuất dữ liệu giá lịch sử.

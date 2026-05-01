@@ -2,7 +2,6 @@ import sys
 import json
 import os
 import platform
-import vnai
 from pathlib import Path
 import logging
 

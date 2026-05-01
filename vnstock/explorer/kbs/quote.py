@@ -4,7 +4,6 @@ import pandas as pd
 import json
 from datetime import datetime, timedelta
 from typing import Optional, Union, List
-from vnai import optimize_execution
 from vnstock.core.models import TickerModel
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.parser import get_asset_type, convert_derivative_symbol
@@ -141,7 +140,6 @@ class Quote:
             # Nếu đã đúng format DD-MM-YYYY thì trả về như cũ
             return date_str
 
-    @optimize_execution("KBS")
     def history(
         self,
         start: Optional[str] = None,
@@ -357,7 +355,6 @@ class Quote:
 
         return df
 
-    @optimize_execution("KBS")
     def intraday(
         self,
         page_size: Optional[int] = 100,

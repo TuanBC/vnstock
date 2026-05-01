@@ -5,7 +5,6 @@ from datetime import datetime
 from .const import _TRADING_URL
 import json
 import pandas as pd
-from vnai import optimize_execution
 from vnstock.core.utils.parser import get_asset_type, camel_to_snake, flatten_data
 from vnstock.core.utils.validation import validate_symbol
 from vnstock.core.utils.logger import get_logger
@@ -51,7 +50,6 @@ class Trading:
         if not show_log:
             logger.setLevel('CRITICAL')
 
-    @optimize_execution("VCI")
     def price_board (self, symbols_list: List[str], 
                      show_log: Optional[bool] = False,
                      flatten_columns: Optional[bool] = False,

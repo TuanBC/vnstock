@@ -5,7 +5,6 @@ import json
 import re
 from datetime import datetime
 from typing import Optional, List
-from vnai import optimize_execution
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.parser import get_asset_type
 from vnstock.core.utils.client import ProxyConfig
@@ -179,7 +178,6 @@ class Trading:
         return pd.DataFrame(json_data['data'])
 
 
-    @optimize_execution("KBS")
     def price_board(
         self,
         symbols_list: List[str],

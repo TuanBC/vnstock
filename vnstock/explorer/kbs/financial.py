@@ -3,7 +3,6 @@
 import pandas as pd
 from typing import Optional, List, Dict, Union
 from enum import Enum
-from vnai import optimize_execution
 from vnstock.core.utils.logger import get_logger
 from vnstock.core.utils.parser import get_asset_type
 from vnstock.core.utils.field import FieldHandler
@@ -554,7 +553,6 @@ class Finance:
 
 
 
-    @optimize_execution("KBS")
     def income_statement(
         self,
         period: Optional[str] = None,
@@ -618,7 +616,6 @@ class Finance:
 
 
 
-    @optimize_execution("KBS")
     def balance_sheet(
         self,
         period: Optional[str] = None,
@@ -682,7 +679,6 @@ class Finance:
 
 
 
-    @optimize_execution("KBS")
     def cash_flow(
         self,
         period: Optional[str] = None,
@@ -767,7 +763,6 @@ class Finance:
 
 
 
-    @optimize_execution("KBS")
     def ratio(
         self,
         period: Optional[str] = None,

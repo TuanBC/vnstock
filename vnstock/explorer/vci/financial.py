@@ -30,7 +30,6 @@ from vnstock.core.utils.user_agent import get_headers
 from vnstock.core.utils.transform import replace_in_column_names, flatten_hierarchical_index, reorder_cols
 import requests
 import secrets
-from vnai import optimize_execution
 
 logger = get_logger(__name__)
 
@@ -391,7 +390,6 @@ class Finance:
             
         return df
 
-    @optimize_execution("VCI")
     def balance_sheet(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                     dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -408,7 +406,6 @@ class Finance:
         """
         return self._get_financial_report('balance_sheet', period=period, lang=lang, dropna=dropna, show_log=show_log)
 
-    @optimize_execution("VCI")
     def income_statement(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                         dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -425,7 +422,6 @@ class Finance:
         """
         return self._get_financial_report('income_statement', period=period, lang=lang, dropna=dropna, show_log=show_log)
 
-    @optimize_execution("VCI")
     def cash_flow(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
                  dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """
@@ -442,7 +438,6 @@ class Finance:
         """
         return self._get_financial_report('cash_flow', period=period, lang=lang, dropna=dropna, show_log=show_log)
 
-    @optimize_execution("VCI")
     def ratio(self, period: Optional[str] = None, lang: Optional[str] = 'en', 
             dropna: Optional[bool] = True, show_log: Optional[bool] = False) -> pd.DataFrame:
         """

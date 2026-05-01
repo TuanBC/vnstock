@@ -2,7 +2,6 @@
 
 from typing import Any
 from tenacity import retry, stop_after_attempt, wait_exponential
-from vnai import optimize_execution
 from vnstock.config import Config
 from vnstock.base import BaseAdapter, dynamic_method
 
@@ -32,10 +31,9 @@ class Finance(BaseAdapter):
         get_all: bool = True,
         show_log: bool = False
     ):
-        # Ensure explorer modules and vnai patches are loaded
-        from vnstock import _ensure_explorer_modules_loaded, _ensure_vnai_initialized
+        # Ensure explorer modules are loaded
+        from vnstock import _ensure_explorer_modules_loaded
         _ensure_explorer_modules_loaded()
-        _ensure_vnai_initialized()
         
         # Store parameters for later use
         self.source = source
@@ -58,7 +56,6 @@ class Finance(BaseAdapter):
             show_log=show_log
         )
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -72,7 +69,6 @@ class Finance(BaseAdapter):
         """Retrieve balance sheet data."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -86,7 +82,6 @@ class Finance(BaseAdapter):
         """Retrieve income statement data."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(
@@ -100,7 +95,6 @@ class Finance(BaseAdapter):
         """Retrieve cash flow data."""
         pass
 
-    @optimize_execution("API")
     @retry(
         stop=stop_after_attempt(Config.RETRIES),
         wait=wait_exponential(

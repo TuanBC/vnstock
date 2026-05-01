@@ -1,6 +1,5 @@
 import pandas as pd
 from typing import Any
-from vnai import optimize_execution
 from vnstock.ui._base import BaseDetailUI
 
 class EquityFundamental(BaseDetailUI):
@@ -54,7 +53,6 @@ class EquityFundamental(BaseDetailUI):
                 
         return df
 
-    @optimize_execution("UI")
     def income_statement(self, period: str = 'year', orient: str = 'report', **kwargs) -> Any:
         """Get income statement."""
         df = self._dispatch('Fundamental', 'equity', 'income_statement', period=period, **kwargs)
@@ -62,7 +60,6 @@ class EquityFundamental(BaseDetailUI):
             return self._format_output(df, orient)
         return df
 
-    @optimize_execution("UI")
     def balance_sheet(self, period: str = 'year', orient: str = 'report', **kwargs) -> Any:
         """Get balance sheet."""
         df = self._dispatch('Fundamental', 'equity', 'balance_sheet', period=period, **kwargs)
@@ -70,7 +67,6 @@ class EquityFundamental(BaseDetailUI):
             return self._format_output(df, orient)
         return df
 
-    @optimize_execution("UI")
     def cash_flow(self, period: str = 'year', orient: str = 'report', **kwargs) -> Any:
         """Get cash flow statement."""
         df = self._dispatch('Fundamental', 'equity', 'cash_flow', period=period, **kwargs)
@@ -78,7 +74,6 @@ class EquityFundamental(BaseDetailUI):
             return self._format_output(df, orient)
         return df
 
-    @optimize_execution("UI")
     def ratio(self, orient: str = 'report', **kwargs) -> Any:
         """Get financial ratios."""
         df = self._dispatch('Fundamental', 'equity', 'ratio', **kwargs)
@@ -86,7 +81,6 @@ class EquityFundamental(BaseDetailUI):
             return self._format_output(df, orient)
         return df
 
-    @optimize_execution("UI")
     def ratios(self, orient: str = 'report', **kwargs) -> Any:
         """Get financial ratios (alias)."""
         return self.ratio(orient=orient, **kwargs)
